@@ -23,38 +23,59 @@
 
 
 class ParkingGarage():
-    
-    def __init__ (self, tickets=[1], parkingSpaces=[1], currentTicket={'Paid': False}):
+    '''
+    The parking garage has a maximum of 10 parking spaces, represented as a list. Each item in the list will represent 0 or 1,
+    where 0 = empty, 1 = occupied.
+    '''
+    def __init__ (self, tickets=[0,0,0,0,0,0,0,0,0,0], parkingSpaces=[0,0,0,0,0,0,0,0,0,0], currentTicket={'Paid': False}):
         self.tickets = tickets
         self.parkingSpaces = parkingSpaces
         self.currentTicket = currentTicket
-
+        self.parked_list = []
+        self.car_id = {}
     
     def takeTicket(self):
-        del self.tickets[0]
-        del self.parkingSpaces[0]
+        user_car = input("Please choose a car from 1-10")
+        user_parking = int(input("Where would you like to park? [1-10]"))
+        index = user_parking - 1
+        self.car_id[user_car] = index  # unique ID for each parked car, associated with their parked index
+        self.parked_list.append(self.car_id)  # keeps track of the current key's index
+        self.parked_list[].append('Unpaid')
+        self.tickets[index] = 1
+        self.parkingSpaces[index] = user_car
         return self.tickets, self.parkingSpaces
-    
+
+        parked_list['car1'].append(index)
+        parked_list['car1'].append(paid)
+
     def payforParking(self):
         remainder = 10
+        user_car = input("Please input your car number")
         while True:
-            user_input = input("Please pay for you parking ticket($10): ")
-            ticket_amount_paid = int(user_input)
+            user_pay = input("Please pay for you parking ticket ($10): ")
+            ticket_amount_paid = int(user_pay)
             remainder -= ticket_amount_paid
             if remainder <= 0:
                 self.currentTicket['Paid'] = True
-                print("You have paid the full amount")
+                print("You have paid the full amount. You have 15 minutes to leave the parking garage.")
                 break
             else:
                 self.currentTicket['Paid'] = False
                 print(f'Please pay the remainder: ${remainder}')
                
-
-     
+    def leaveGarage(self):
+        if self.currentTicket == True:
+            car_number = input("Please verify your car number [1-10]")
+            # if car_number == self.parkingSpaces[]
+            print("Thank You, have a nice day!")
+        else:
+            self.payforParking()
+        self.parkingSpaces[index] = 0
+        self.tickets[index] = 0
+        print(self.parkingSpaces)
+        print(self.tickets)
         
-    
 
-
-car1 = ParkingGarage([1,2],[1,2],{})
-# print(car1.takeTicket())
-car1.payforParking()
+car = ParkingGarage()
+car.takeTicket()
+# car.leaveGarage()
